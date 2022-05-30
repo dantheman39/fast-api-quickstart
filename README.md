@@ -21,6 +21,9 @@ Run an individual hook with `pre-commit run <hook-name>`.
 By default they only run on staged files. You can pass `--all-files` to
 run against all the files.
 
+Some hooks will automatically correct errors ("files were modified by this hook").
+Simply run your commit command again and those hooks should come back green.
+
 Sometimes things get out of whack, and pre-commit hooks are tricky to debug.
 Run this to reinstall and clear its package cache:
 
