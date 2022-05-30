@@ -1,25 +1,10 @@
 # Quickstart
 
-## Dependencies
-If you don't have conda, install miniconda.
+## Environment variables: .env file
 
-```shell
-conda env create -f environment.yml
-conda activate fast-api-qs
-poetry install
-```
-
-### Note for how I generated pyproject.toml
-
-I created the conda environment, then ran:
-
-```shell
-# Used the same python as I got from conda
-poetry init --python=~3.10.4
-# Followed their prompts to create pyproject.toml
-# Then started adding dependencies
-poetry add fastapi
-```
+Create a .env file at the topmost part of the repo. See myproject/config.py
+for possible values. Note: if running in linux in Docker, I had to set host
+to 0.0.0.0 to access the container.
 
 ## Pre-commit hooks
 
@@ -43,4 +28,38 @@ Run this to reinstall and clear its package cache:
 pre-commit uninstall
 pre-commit clean
 pre-commit install
+```
+
+## Running in docker-compose
+
+To run in docker compose, run `docker-compose up`.
+
+## Running in python
+
+### Dependencies
+If you don't have conda, install miniconda.
+
+```shell
+conda env create -f environment.yml
+conda activate fast-api-qs
+poetry install
+```
+
+### Run the server
+
+`python -m myproject`
+
+
+### Note for how I generated pyproject.toml
+
+I created the conda environment, then ran:
+
+```shell
+# Used the same python as I got from conda
+poetry init --python=~3.10.4
+# Followed their prompts to create pyproject.toml
+# Then started adding dependencies
+poetry add fastapi
+poetry add --dev black
+# etc...
 ```
