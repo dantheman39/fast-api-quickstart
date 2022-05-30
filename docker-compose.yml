@@ -5,6 +5,16 @@ services:
     build: .
     env_file: .env
     ports:
-      - "8000:8000"
+      - "${PORT}:8000"
     volumes:
       - "./myproject:/app/myproject"
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - "./postgres-data:/var/lib/postgresql/data"
