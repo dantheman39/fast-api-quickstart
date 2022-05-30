@@ -37,6 +37,8 @@ pre-commit install
 
 To run in docker compose, run `docker-compose up`.
 
+To run tests: `docker-compose server pytest`
+
 ## Running in python
 
 ### Dependencies
@@ -51,6 +53,10 @@ poetry install
 ### Run the server
 
 `python -m myproject`
+
+Run tests:
+
+`pytest`
 
 
 ### Note for how I generated pyproject.toml
