@@ -1,5 +1,5 @@
 from .connection import get_connection
-from myproject import models
+from records import models
 
 
 async def create_artist(artist: models.ArtistIn) -> models.Artist:

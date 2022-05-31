@@ -1,6 +1,6 @@
-from myproject.db import albums as db_albums
-from myproject.errors import AlbumNotFound
-from myproject import models
+from records.db import albums as db_albums
+from records.errors import AlbumNotFound
+from records import models
 
 
 async def get_albums() -> list[models.Album]:

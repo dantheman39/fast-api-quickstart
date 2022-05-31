@@ -3,8 +3,8 @@ import uvicorn
 
 from .config import DEBUG, HOST, PORT
 from .models import Artist, ArtistIn, AlbumIn, Album
-from myproject.errors import AlbumNotFound, ArtistNotFound
-from myproject.services import artists as artists_service, albums as albums_service
+from records.errors import AlbumNotFound, ArtistNotFound
+from records.services import artists as artists_service, albums as albums_service
 
 app = FastAPI()
 

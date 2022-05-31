@@ -1,6 +1,6 @@
 from asyncpg import Record
-from myproject.errors import ArtistNotFound
-from myproject import models
+from records.errors import ArtistNotFound
+from records import models
 from .connection import get_connection
 
 

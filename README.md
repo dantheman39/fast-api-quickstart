@@ -4,7 +4,7 @@
 
 Create a .env file at the topmost part of the repo. See myproject/config.py
 for possible values. Note: if running in linux in Docker, I had to set host
-to 0.0.0.0 to access the container.
+to 0.0.0.0 to access the container, and for docker-compose I set DB_HOST to "db".
 
 ## Pre-commit hooks
 
@@ -39,10 +39,10 @@ To run in docker compose, run `docker-compose up`.
 
 To run tests: `docker-compose server pytest`
 
-## Running in python
+## Running in Python
 
 ### Dependencies
-If you don't have conda, install miniconda.
+If you don't have conda, install miniconda, then:
 
 ```shell
 conda env create -f environment.yml
@@ -52,12 +52,24 @@ poetry install
 
 ### Run the server
 
-`python -m myproject`
+`python -m records`
 
 Run tests:
 
 `pytest`
 
+
+### Create DB tables
+
+I haven't worked in an ORM or anything for this yet, so I'm using asyncpg and writing
+queries directly. Run `bash scripts/create_db.sh` to create a new table using docker-compose.
+If you're not using docker-compose, you can use the `scripts/create_db.sql` with your
+instance of postgres.
+
+
+## API Docs
+
+With the server running, go to `http://localhost:8000/docs`.
 
 ### Note for how I generated pyproject.toml
 

@@ -1,6 +1,6 @@
-from myproject.models import Artist, ArtistIn
-from myproject.db import artists as db_artists
-from myproject.errors import ArtistNotFound
+from records.models import Artist, ArtistIn
+from records.db import artists as db_artists
+from records.errors import ArtistNotFound
 
 
 async def get_artists() -> list[Artist]:

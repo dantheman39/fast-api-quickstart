@@ -2,7 +2,7 @@ import contextlib
 import typing as T
 
 import asyncpg
-from myproject.config import DB_PASSWORD, DB_NAME, DB_USER, DB_HOST, DB_PORT
+from records.config import DB_PASSWORD, DB_NAME, DB_USER, DB_HOST, DB_PORT
 
 
 @contextlib.asynccontextmanager
