@@ -1,4 +1,5 @@
 from .connection import get_connection
+from records.errors import ArtistNotFound
 from records import models
 
 
@@ -26,7 +27,7 @@ async def get_artists() -> list[models.Artist]:
         return [models.Artist(id=a["id"], name=a["name"]) for a in artists]
 
 
-async def get_artist(artist_id: int) -> models.Artist | None:
+async def get_artist(artist_id: int) -> models.Artist:
     async with get_connection() as conn:
         artist = await conn.fetchrow(
             """
@@ -36,5 +37,5 @@ async def get_artist(artist_id: int) -> models.Artist | None:
             artist_id,
         )
         if artist is None:
-            return None
+            raise ArtistNotFound()
         return models.Artist(id=artist["id"], name=artist["name"])

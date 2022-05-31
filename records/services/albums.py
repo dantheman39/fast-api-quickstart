@@ -1,5 +1,4 @@
 from records.db import albums as db_albums
-from records.errors import AlbumNotFound
 from records import models
 
 
@@ -8,10 +7,7 @@ async def get_albums() -> list[models.Album]:
 
 
 async def get_album(album_id: int) -> models.Album:
-    album = await db_albums.get_album(album_id=album_id)
-    if album is None:
-        raise AlbumNotFound()
-    return album
+    return await db_albums.get_album(album_id=album_id)
 
 
 async def create_album(album: models.AlbumIn) -> models.Album:

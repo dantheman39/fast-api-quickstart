@@ -1,6 +1,5 @@
 from records.models import Artist, ArtistIn
 from records.db import artists as db_artists
-from records.errors import ArtistNotFound
 
 
 async def get_artists() -> list[Artist]:
@@ -8,10 +7,7 @@ async def get_artists() -> list[Artist]:
 
 
 async def get_artist(artist_id: int) -> Artist:
-    artist = await db_artists.get_artist(artist_id=artist_id)
-    if artist is None:
-        raise ArtistNotFound()
-    return artist
+    return await db_artists.get_artist(artist_id=artist_id)
 
 
 async def create_artist(artist: ArtistIn) -> Artist:

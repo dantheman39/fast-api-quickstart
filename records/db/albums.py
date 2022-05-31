@@ -1,5 +1,5 @@
 from asyncpg import Record
-from records.errors import ArtistNotFound
+from records.errors import AlbumNotFound, ArtistNotFound
 from records import models
 from .connection import get_connection
 
@@ -15,7 +15,7 @@ def _db_record_to_album(r: Record) -> models.Album:
     )
 
 
-async def get_album(album_id: int) -> models.Album | None:
+async def get_album(album_id: int) -> models.Album:
     async with get_connection() as conn:
         result = await conn.fetchrow(
             """
@@ -31,7 +31,7 @@ async def get_album(album_id: int) -> models.Album | None:
             album_id,
         )
         if result is None:
-            return None
+            raise AlbumNotFound()
         return _db_record_to_album(result)
 
 
