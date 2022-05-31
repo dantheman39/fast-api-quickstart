@@ -1,4 +1,7 @@
-# Quickstart
+# Fast-API quickstart
+
+A starter project I made for myself that is complete with .env file, pre-commit hooks,
+postgres, Docker, docker-compose, tests, etc.
 
 ## Environment variables: .env file
 
