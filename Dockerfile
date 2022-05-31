@@ -10,6 +10,6 @@ COPY poetry.lock ./
 RUN poetry config virtualenvs.create false \
     && poetry install --no-dev --no-interaction
 
-COPY records ./myproject
+COPY records ./records
 
-CMD ["python", "-m", "myproject"]
+CMD ["python", "-m", "records"]
