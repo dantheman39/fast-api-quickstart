@@ -40,7 +40,7 @@ pre-commit install
 
 To run in docker compose, run `docker-compose up`.
 
-To run tests: `docker-compose server pytest`
+To run tests: `docker-compose exec server pytest`
 
 ## Running in Python
 
