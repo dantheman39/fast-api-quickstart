@@ -11,3 +11,6 @@ PORT = config.get("PORT", cast=int, default="8000")
 DB_NAME = config.get("DB_NAME", default="recordings")
 DB_USER = config.get("DB_USER")
 DB_PASSWORD = config.get("DB_PASSWORD")
+# Default is the service name in docker compose
+DB_HOST = config.get("DB_HOST", default="db")
+DB_PORT = config.get("DB_PORT")
