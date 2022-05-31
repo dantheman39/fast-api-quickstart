@@ -1,4 +1,4 @@
-name: fast-api-qs
+name: fast-api-quickstart
 channels:
   - conda-forge
 dependencies:
