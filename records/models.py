@@ -5,20 +5,21 @@ class ArtistIn(BaseModel):
     name: str
 
 
-class Artist(ArtistIn):
+# Note that I could have this inherit
+# from ArtistIn, but this is short
+# just a little easier to read, and
+# it's just so simple
+class Artist(BaseModel):
     id: int
     name: str
 
 
-class _AlbumBase(BaseModel):
+class AlbumIn(BaseModel):
     name: str
-
-
-class AlbumIn(_AlbumBase):
     artist_id: int
 
 
-class Album(_AlbumBase):
+class Album(BaseModel):
     id: int
     name: str
     artist: Artist
