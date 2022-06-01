@@ -4,3 +4,7 @@ class ArtistNotFound(ValueError):
 
 class AlbumNotFound(ValueError):
     pass
+
+
+class DBNotSetUp(ValueError):
+    pass

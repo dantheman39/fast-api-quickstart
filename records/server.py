@@ -3,6 +3,7 @@ import uvicorn
 
 from .config import DEBUG, HOST, PORT
 from .models import Artist, ArtistIn, AlbumIn, Album
+from records.db.connection import setup_db
 from records.errors import AlbumNotFound, ArtistNotFound
 from records.services import artists as artists_service, albums as albums_service
 
@@ -24,7 +25,7 @@ async def get_artist(artist_id: int) -> Artist:
         )
 
 
-@app.post("/artists", response_model=Artist)
+@app.post("/artists", response_model=Artist, status_code=201)
 async def post_artist(artist: ArtistIn) -> Artist:
     return await artists_service.create_artist(artist)
 
@@ -44,7 +45,7 @@ async def get_album(album_id: int) -> Album:
         )
 
 
-@app.post("/albums", response_model=Album)
+@app.post("/albums", response_model=Album, status_code=201)
 async def post_album(album: AlbumIn) -> Album:
     try:
         return await albums_service.create_album(album)
@@ -61,6 +62,7 @@ async def home():
 
 
 def main():
+    setup_db()
     uvicorn.run(app=__name__ + ":app", reload=DEBUG, host=HOST, port=PORT)
 
 

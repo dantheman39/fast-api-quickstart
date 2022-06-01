@@ -40,7 +40,14 @@ pre-commit install
 
 To run in docker compose, run `docker-compose up`.
 
-To run tests: `docker-compose exec server pytest`
+To run tests, you can see the commands in these files:
+
+```shell
+# The docker-compose commands were long, I put them in here:
+bash scripts/tests_up.sh
+bash scripts/run_tests.sh
+docker-compose down
+```
 
 ## Running in Python
 
