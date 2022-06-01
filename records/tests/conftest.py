@@ -1,13 +1,12 @@
 import asyncpg
-import pytest
+import pytest_asyncio
 
 from records.config import DB_NAME, DB_USER, DB_HOST, DB_PORT, DB_PASSWORD
 from records.db.connection import setup_db, get_connection
 from records.db.manage_db import recreate_tables
 
 
-@pytest.fixture
-@pytest.mark.asyncio
+@pytest_asyncio.fixture
 async def test_db():
     if "test" not in DB_NAME:
         raise ValueError(
