@@ -2,7 +2,7 @@ import asyncpg
 import pytest_asyncio
 
 from records.config import DB_NAME, DB_USER, DB_HOST, DB_PORT, DB_PASSWORD
-from records.db.connection import setup_db, get_connection
+from records.db.connection import get_connection
 from records.db.manage_db import recreate_tables
 
 
@@ -12,7 +12,6 @@ async def test_db():
         raise ValueError(
             f"Expected the db name to contain 'test', stopping for safety: {DB_NAME}"
         )
-    setup_db(force_new=True)
     sys_conn: asyncpg.Connection | None = None
     try:
         sys_conn = await asyncpg.connect(
