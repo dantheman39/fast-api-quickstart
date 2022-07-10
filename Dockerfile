@@ -4,6 +4,8 @@ WORKDIR "/app"
 
 COPY environment.yml ./
 RUN mamba env update -n base --file environment.yml --quiet && conda clean -afy
+# Needed for asyncpg
+RUN apt-get update && apt-get install -y gcc
 
 COPY pyproject.toml ./
 COPY poetry.lock ./
