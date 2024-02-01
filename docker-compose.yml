@@ -8,6 +8,8 @@ services:
       - "${PORT}:8000"
     volumes:
       - "./records:/app/records"
+      - "./alembic:/app/alembic"
+      - "./alembic.ini:/app/alembic.ini"
   db:
     image: postgres:14
     environment:

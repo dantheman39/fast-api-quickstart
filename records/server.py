@@ -3,7 +3,6 @@ import uvicorn
 
 from .config import DEBUG, HOST, PORT
 from .models import Artist, ArtistIn, AlbumIn, Album
-from records.db.connection import setup_db
 from records.errors import AlbumNotFound, ArtistNotFound
 from records.services import artists as artists_service, albums as albums_service
 
@@ -62,7 +61,6 @@ async def home():
 
 
 def main():
-    setup_db()
     uvicorn.run(app=__name__ + ":app", reload=DEBUG, host=HOST, port=PORT)
 
 
