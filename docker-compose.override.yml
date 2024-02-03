@@ -1,7 +1,8 @@
 services:
   server:
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     build: .
     env_file: .env
     environment:
