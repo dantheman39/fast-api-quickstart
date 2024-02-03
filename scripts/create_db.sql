@@ -16,3 +16,5 @@ CREATE TABLE albums(
       FOREIGN KEY(artist_id)
         REFERENCES artists(id)
 );
+
+/* TODO create indices */
