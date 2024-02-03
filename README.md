@@ -72,8 +72,8 @@ Run tests:
 ### Create DB tables
 
 I haven't worked in an ORM or anything for this yet, so I'm using asyncpg and writing
-queries directly. Run `bash scripts/create_db.sh` to create a new table using docker-compose.
-If you're not using docker-compose, you can use the `scripts/create_db.sql` with your
+queries directly. Run `bash scripts/db/create_db.sh` to create a new table using docker-compose.
+If you're not using docker-compose, you can use the `scripts/01-create_db.sql` with your
 instance of postgres.
 
 
