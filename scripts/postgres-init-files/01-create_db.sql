@@ -17,4 +17,4 @@ CREATE TABLE albums(
         REFERENCES artists(id)
 );
 
-/* TODO create indices */
+CREATE INDEX frn_albums_artist_id ON albums(artist_id);
