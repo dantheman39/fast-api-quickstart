@@ -21,3 +21,4 @@ services:
       - "${PORT-8000}:${PORT-8000}"
     volumes:
       - "./records:/app/records"
+      - "./sql:/app/sql"

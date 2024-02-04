@@ -12,6 +12,7 @@ CREATE TABLE albums(
     CONSTRAINT fk_artist
       FOREIGN KEY(artist_id)
         REFERENCES artists(id)
+          ON DELETE CASCADE
 );
 
-CREATE INDEX frn_albums_artist_id ON albums(artist_id);
+CREATE INDEX fk_albums_artist_id ON albums(artist_id);

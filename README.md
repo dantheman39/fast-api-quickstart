@@ -39,7 +39,7 @@ the helper script `./scripts/deps up`.
 This has a dockerized Postgres database, whose data is persisted in a docker-managed volume.
 If you want to run only the DB in docker, run `./scripts/deps up`.
 
-On startup if no database is found, the container will run the scripts found in `scripts/postgres-init-files/`
+On startup if no database is found, the container will run the scripts found in `/sql`
 to populate the database.
 
 If you want to delete the database, just run `docker compose down --volumes`.
