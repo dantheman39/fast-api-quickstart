@@ -12,8 +12,9 @@ from records.db.connection import get_connection  # noqa: E402
 from records.db.manage_db import recreate_tables  # noqa: E402
 
 
-@pytest_asyncio.fixture
-async def test_db():
+# Create a test database before test suite, tear it down when done
+@pytest_asyncio.fixture(scope="session", autouse=True)
+async def create_db():
     if "test" not in DB_NAME:
         raise ValueError(
             f"Expected the db name to contain 'test', stopping for safety: {DB_NAME}"
@@ -39,8 +40,8 @@ async def test_db():
             CREATE DATABASE {DB_NAME};
         """
         )
-        async with get_connection() as conn:
-            await recreate_tables(connection=conn)
+        # async with get_connection() as conn:
+        #     await recreate_tables(connection=conn)
         yield
     finally:
         if sys_conn is not None:
@@ -50,3 +51,11 @@ async def test_db():
             """
             )
             await sys_conn.close()
+
+
+# Drop and recreate tables before and after each test
+@pytest_asyncio.fixture
+async def clean_db(create_db):
+    async with get_connection() as conn:
+        await recreate_tables(connection=conn)
+    yield

@@ -15,13 +15,13 @@ async def test_hello():
 
 
 @pytest.mark.asyncio
-async def test_get_albums(test_db):
+async def test_get_albums(clean_db):
     response = client.get("/albums")
     assert response.status_code == 200
 
 
 @pytest.mark.asyncio
-async def test_post_artist(test_db):
+async def test_post_artist(clean_db):
     response = client.post(
         "/artists",
         json={

@@ -1,13 +1,23 @@
+import contextlib
+
 from fastapi import FastAPI, HTTPException
 import uvicorn
 
 from .config import DEBUG, HOST, PORT
 from .models import Artist, ArtistIn, AlbumIn, Album
-from records.db.connection import get_connection_string
+from records.db.connection import create_pool, close_pool
 from records.errors import AlbumNotFound, ArtistNotFound
 from records.services import artists as artists_service, albums as albums_service
 
-app = FastAPI()
+
+@contextlib.asynccontextmanager
+async def lifespan(app: FastAPI):
+    await create_pool()
+    yield
+    await close_pool()
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.get("/artists", response_model=list[Artist])
@@ -62,7 +72,6 @@ async def home():
 
 
 def main():
-    get_connection_string()
     uvicorn.run(app=__name__ + ":app", reload=DEBUG, host=HOST, port=PORT)
 
 
