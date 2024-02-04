@@ -1,9 +1,15 @@
+from os import environ
+
 import asyncpg
 import pytest_asyncio
 
-from records.config import DB_NAME, DB_USER, DB_HOST, DB_PORT, DB_PASSWORD
-from records.db.connection import get_connection
-from records.db.manage_db import recreate_tables
+environ["ENV"] = "test"
+
+# We have to update the ENV before importing, so ignore flake8's complaints.
+# See docs for starlette config.
+from records.config import DB_NAME, DB_USER, DB_HOST, DB_PORT, DB_PASSWORD  # noqa: E402
+from records.db.connection import get_connection  # noqa: E402
+from records.db.manage_db import recreate_tables  # noqa: E402
 
 
 @pytest_asyncio.fixture

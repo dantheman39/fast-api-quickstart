@@ -1,6 +1,23 @@
-version: "3.1"
-
 services:
-  db:
+  server:
+    depends_on:
+      db:
+        condition: service_healthy
+    build: .
+    image: "dantheman39/fast-api-quickstart"
+    env_file: .env
+    environment:
+      - "DEBUG=${DEBUG-true}"
+      - "HOST=${HOST-0.0.0.0}"
+      - "PORT=${PORT-8000}"
+      - "DB_NAME=${DB_NAME-records}"
+      - "DB_USER=${DB_USER-postgres}"
+      - "DB_PASSWORD=${DB_PASSWORD-awesomeness}"
+      # Hard-coding to the internal port. The postgres
+      # container makes you override the CMD to set the port,
+      # which I'd prefer not to do.
+      - "DB_PORT=5432"
     ports:
-      - "${DB_PORT}:${DB_PORT}"
+      - "${PORT-8000}:${PORT-8000}"
+    volumes:
+      - "./records:/app/records"
