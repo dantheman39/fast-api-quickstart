@@ -1,18 +1,6 @@
-from asyncpg import Record
 from records.errors import AlbumNotFound, ArtistNotFound
 from records import models
 from .connection import get_connection
-
-
-def _db_record_to_album(r: Record) -> models.Album:
-    return models.Album(
-        id=r["album_id"],
-        name=r["album_name"],
-        artist=models.Artist(
-            id=r["artist_id"],
-            name=r["artist_name"],
-        ),
-    )
 
 
 async def get_album(album_id: int) -> models.Album:
@@ -32,7 +20,7 @@ async def get_album(album_id: int) -> models.Album:
         )
         if result is None:
             raise AlbumNotFound()
-        return _db_record_to_album(result)
+        return models.Album.from_db(result)
 
 
 async def get_albums() -> list[models.Album]:
@@ -48,7 +36,7 @@ async def get_albums() -> list[models.Album]:
               LEFT JOIN artists AS ar ON al.artist_id = ar.id
         """
         )
-        return [_db_record_to_album(a) for a in result]
+        return [models.Album.from_db(row) for row in result]
 
 
 async def create_album(album: models.AlbumIn) -> models.Album:
@@ -86,4 +74,4 @@ async def create_album(album: models.AlbumIn) -> models.Album:
             result[0]["id"],
         )
 
-        return _db_record_to_album(out)
+        return models.Album.from_db(out)

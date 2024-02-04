@@ -14,7 +14,7 @@ async def create_artist(artist: models.ArtistIn) -> models.Artist:
         row = await conn.fetchrow(
             "SELECT * FROM artists WHERE id = $1", result[0]["id"]
         )
-        return models.Artist(id=row["id"], name=row["name"])
+        return models.Artist.from_db(row)
 
 
 async def get_artists() -> list[models.Artist]:
