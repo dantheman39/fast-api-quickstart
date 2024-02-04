@@ -4,6 +4,7 @@ services:
       db:
         condition: service_healthy
     build: .
+    image: "dantheman39/fast-api-quickstart"
     env_file: .env
     environment:
       - "DEBUG=${DEBUG-true}"
