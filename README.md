@@ -59,9 +59,9 @@ environments with `conda` (or `mamba`, which is loads faster), and install most 
 
 If you don't already have strong opinions:
 
-1. Install [micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html)
-2. Create the environment with `micromamba create -f environment.yml`
-3. Activate the environment with `micromamba activate fast-api-quickstart`
+1. Install [miniforge](https://github.com/conda-forge/miniforge)
+2. Create the environment with `mamba env create -f environment.yml`
+3. Activate the environment with `mamba activate fast-api-quickstart`
 
 #### Install remaining packages
 
