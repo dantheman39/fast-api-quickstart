@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "fast-api-qs"
+name = "fast-api-quickstart"
 version = "0.0.1"
 description = "Quickstart repo for FastAPI"
 authors = ["Daniel Riggs <daniel.riggs1@gmail.com>"]
